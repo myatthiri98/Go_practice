@@ -1,0 +1,36 @@
+body {
+    text-align: center;
+    background-color: #F5F5F5; /* light gray */
+}
+
+h1 {
+    margin-top: 100px;
+    font-size: 36px;
+    color: #333; /* dark gray */
+}
+
+#timer {
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 72px;
+    background-color: #F8BBD0; /* light pink */
+    border-radius: 5px;
+    width: 200px;
+    margin: 0 auto; /* center the element horizontally */
+    color: #333; /* dark gray */
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FFC107; /* yellow */
+    color: #000; /* black */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+button:hover {
+    background-color: #FFA000; /* darker yellow */
+}
