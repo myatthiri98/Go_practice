@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #messages {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .message {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .message strong {
+            color: #4CAF50;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Chat</h1>
+        <form id="chatForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="message" placeholder="Message" required>
+            <button type="submit">Send</button>
+        </form>
+        <div id="messages"></div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#chatForm').submit(function(e) {
+                e.preventDefault();
+                const name = $('#name').val();
+                const message = $('#message').val();
+                $('#messages').append(`
+                    <div class="message">
+                        <strong>${name}:</strong> ${message}
+                    </div>
+                `);
+                $('#name, #message').val('');
+            });
+        });
+    </script>
+</body>
+</html>

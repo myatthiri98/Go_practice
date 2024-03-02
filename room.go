@@ -41,13 +41,15 @@ var upgrader = &websocket.Upgrader{
 func (r *room) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	socket, err := upgrader.Upgrade(w, req, nil)
 	if err != nil {
-		log.Fatal("ServeHTTP", err.Error())
+		log.Fatal("ServeHTTP:", err.Error())
 	}
+
 	client := &client{
 		room:   r,
-		to:     make(chan []byte),
+		to:     make(chan []byte, messageBufferSize),
 		socket: socket,
 	}
+
 	r.join <- client
 	defer func() {
 		r.leave <- client
@@ -55,4 +57,13 @@ func (r *room) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	go client.SendMessage()
 	client.ReadMessage()
+}
+
+func NewRoom() *room {
+	return &room{
+		forward: make(chan []byte),
+		join:    make(chan *client),
+		leave:   make(chan *client),
+		clients: make(map[*client]bool),
+	}
 }
